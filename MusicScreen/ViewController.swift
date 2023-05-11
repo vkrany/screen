@@ -8,6 +8,28 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    enum MyColors: String {
+        case red = "red", green = "green", blue = "blue", yellow = "yellow", purple = "purple", orange = "orange"
+        
+        var uiColor: UIColor {
+               switch self {
+               case .red:
+                   return UIColor.red
+               case .green:
+                   return UIColor.green
+               case .blue:
+                   return UIColor.blue
+               case .yellow:
+                   return UIColor.yellow
+               case .purple:
+                   return UIColor.purple
+               case .orange:
+                   return UIColor.orange
+               }
+           }
+    }
+    
     private let myView: UIView = {
         let myView = UIView()
         myView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,14 +110,22 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraint)
     }
 
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
-        let red = CGFloat.random(in: 0...1)
-        let green = CGFloat.random(in: 0...1)
-        let blue = CGFloat.random(in: 0...1)
-        let color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        //правильно
+        let colors: [MyColors] = [.red, .green, .blue, .yellow, .purple, .orange]
+        let randomColor = colors.randomElement()?.uiColor ?? .white
 
-        myView.backgroundColor = color    }
-    
+        myView.backgroundColor = randomColor
+        //не очень правильно
+//        @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+//                let tappedImage = tapGestureRecognizer.view as! UIImageView
+//                let red = CGFloat.random(in: 0...1)
+//                let green = CGFloat.random(in: 0...1)
+//                let blue = CGFloat.random(in: 0...1)
+//                let color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+//
+//                myView.backgroundColor = color
+//
+//        }
+    }
 }
