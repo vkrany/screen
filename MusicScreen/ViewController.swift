@@ -82,6 +82,9 @@ class ViewController: UIViewController {
         
         myView.addSubview(myImageView)
         addConstraint()
+        
+        //использовать UIPicker
+        
     }
     private func addConstraint() {
         var constraint = [NSLayoutConstraint]()
